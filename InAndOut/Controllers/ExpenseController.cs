@@ -36,10 +36,11 @@ namespace InAndOut.Controllers
         // POST: ExpenseController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Expense obj)
         {
-           
-                return RedirectToAction(nameof(Index));
+            _db.expenses.Add(obj);
+            _db.SaveChanges();
+                return RedirectToAction("Index");
             
         }
 
