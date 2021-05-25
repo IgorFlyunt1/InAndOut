@@ -34,9 +34,9 @@
         }
     </tbody>
     <thead>
-        <tr>
-            <th>Count Expenses : </th>
-            <th>Total Amount : @Model.Sum(i=>i.AmountExpense)</th>
+        <tr>           
+                    <th>Count Expenses : @Model.Count()</th>
+                    <th>Total Amount : @Model.Sum(i => i.AmountExpense)</th>
         </tr>
     </thead>
 </table>

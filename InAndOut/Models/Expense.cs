@@ -13,9 +13,12 @@ namespace InAndOut.Models
         public int Id { get; set; }
 
         [DisplayName("Name of Expenses")]
+        [Required]
         public string NameExpense{ get; set; }
 
         [DisplayName("Amount Expenses")]
+        [Required]
+        [Range(1, int.MaxValue, ErrorMessage ="Amount must be grather then 0")]
         public int AmountExpense{ get; set; }
     }
 }
