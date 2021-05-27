@@ -36,7 +36,7 @@ namespace InAndOut.Controllers
             return View();
         }
 
-        // POST: ExpenseController/Create
+        // POST: Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Expense obj)
@@ -46,6 +46,74 @@ namespace InAndOut.Controllers
                 return RedirectToAction("Index");
             
         }
+
+        // GET: Delete
+       
+        public ActionResult Delete(int? id)
+        { 
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            var obj = _db.expenses.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+
+        }
+
+
+        // POST: Delete
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeletePost(int? id)
+        {
+            var obj = _db.expenses.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            _db.expenses.Remove(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+
+        }
+
+
+        // GET: Update
+
+        public ActionResult Update(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            var obj = _db.expenses.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+
+        }
+
+        // POST: Update
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Update(Expense obj)
+        {
+            _db.expenses.Update(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+
+        }
+
+
 
 
     }
